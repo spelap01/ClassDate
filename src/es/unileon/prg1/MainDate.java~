@@ -5,7 +5,7 @@ public class mainDate{
         today= new Date(4,4,2016);
         tomorrow = new Date(5,4,2016);
         today.is.Same(tomorrow);
-        
+        System.out.println(today.getMonthName());
         
     }
 }
