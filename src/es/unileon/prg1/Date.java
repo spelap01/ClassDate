@@ -1,23 +1,31 @@
-class Date{
+package es.unileon.prg1;
+public class Date{
     private int day;
     private int month;
     private int year;
-    
-    public Date(int day, int month, int year){
-	if (day<=0||day>=31){
-		System.out.println("error");
+    //laza el exception si da error 
+
+
+    public Date(int day, int month, int year)throws DateException{
+	StringBuffer message= new StringBuffer();
+	if (day<=0||day>31){
+		message.append("error");
 	}
-	else if(month<=0||month>=12){
-		System.out.ptintln("error");
+	if(month<=0||month>12){
+		message.append("error");
+	} 
+	if(year<=0){
+		message.append("error");
 	}
-	else if(year<=0){
-		System.out.ptintln("error");
-	}
-	
-        this.day= day;
-        this.month= month;
-        this.year= year;
+			
+	if (message.length()!=0){
+		throw new DateException(message.toString()); 
+      }else{
+	this.day=day;
+	this.month=month;
+	this.year=year;
     }
+}
     
     int getDay(){
         return this.day;
@@ -41,9 +49,9 @@ class Date{
         this.year= year;
     }
     
-    boolean isSameYear(Date otherDate){
+    boolean isSameDay(Date otherDate){
         boolean result = false;
-        if(this.year==otherDate.getYear()){
+        if(this.day==otherDate.getDay()){
             result=true;
         }
         return result;
@@ -58,22 +66,21 @@ class Date{
         return result;
     }
     
-    
-    boolean isSameYear(Date otherDate){
+     boolean isSameYear(Date otherDate){
         boolean result = false;
-        if(this.day==otherDate.getDay()){
+        if(this.year==otherDate.getYear()){
             result=true;
         }
         return result;
     }
 
-    boolean is same(Date otherDate){
+   
+    boolean isSame(Date another){
         boolean result= false;
-        if(isSameDay(otherDate)==true&&isSameMonth(otherDate)==true&&isSameYear(otherDate)==true){
+        if(isSameDay(another)==true&&isSameMonth(another)==true&&isSameYear(another)==true){
                result= true;
-            }else{
-                result= false;
-        }
+            }
+               return result;
 }
 	
 String getMonthName(){
@@ -121,84 +128,148 @@ String getSeasonName(){
 	String estacion= new String(" ");
 	switch(month){
 		case 1: 
-		mes="Enero";
+		estacion="invierno";
 		break;
 		case 2: 
-		mes="Febrero";
+		estacion="invierno";
 		break;
 		case 3: 
-		mes="Marzo";
+		if(day<=21){
+			estacion="invierno";
+		}else{
+			estacion="primavera";
+		}
 		break;
 		case 4: 
-		mes="Abril";
+		estacion="primavera";
 		break;
 		case 5: 
-		mes="Mayo";
+		estacion="primavera";
 		break;
 		case 6: 
-		mes="Junio";
+		if(day<=21){
+			estacion="primavera";
+		}else{
+			estacion="verano";
+		}
 		break;
 		case 7: 
-		mes="Julio";
+		estacion="verano";
 		break;
 		case 8: 
-		mes="Agosto";
+		estacion="verano";
 		break;
 		case 9: 
-		mes="Septiembre";
+		if(day<=23){
+			estacion="verano";
+		}else{
+			estacion="otoño";
+		}
 		break;
 		case 10: 
-		mes="Noviembre";
+		estacion="otoño";
 		break;
 		case 11: 
-		mes="Octubre";
+		estacion="otoño";
 		break;
 		case 12: 
-		mes="Diciembre";
+		if(day<=21){
+			estacion="otoño";
+		}else{
+			estacion="invierno";
+		}
 		break;
+		
 	}
 }
 
 
+int getRestOfMonths(){
+	for(int i=month;i<12;i++){
+	System.out.println("los mese restantes son"+i);
+	}
+}	
+
+String correctDay()throws DateException{	
+	String mensage=message.append("error");
+	switch(month){
+		case 1:
+		if(day<0||day>31){
+			String mensage=message.append("error");
+		}
+		break;
+		case 2:
+		if(day<0||day>28){
+			String mensage=message.append("error");
+		}		
+		break;
+		case 3:
+		if(day<0||day>31){
+			String mensage=message.append("error");
+		}		
+		break;
+		case 4:
+		if(day<0||day>30){
+			String mensage=message.append("error");
+		}		
+		break;
+		case 5:
+		if(day<0||day>31){
+			String mensage=message.append("error");
+		}		
+		break;
+		case 6:
+		if(day<0||day>30){
+			String mensage=message.append("error");
+		}		
+		break;
+		case 7:
+		if(day<0||day>31){
+			String mensage=message.append("error");
+		}		
+		break;
+		case 8:
+		if(day<0||day>31){
+			String mensage=message.append("error");
+		}		
+		break;
+		case 9:
+		if(day<0||day>30){
+			String mensage=message.append("error");
+		}		
+		break;
+		case 10:
+		if(day<0||day>31){
+			String mensage=message.append("error");
+		}		
+		break;
+		case 11:
+		if(day<0||day>30){
+			String mensage=message.append("error");
+		}		
+		break;
+		case 12:
+		if(day<0||day>31){
+			String mensage=message.append("error");
+		}		
+		break;
+	}
 
 
-
-
-
-
-
-
-
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
+int printDate(){
+	for(int i=0;i<3;i++){
+	if(i==1){
+	System.out.println("el dia"+day);
+	}
+	if(i==2){
+	System.out.println("del mes"+month);
+	}
+	if(i==3){
+	System.out.println("de"+year);
+	}
+	}
+}
 
 
 
